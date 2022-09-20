@@ -1,0 +1,19 @@
+<div class="header">
+  <div class="sidebar">
+    <a routerLink="/admin/add" [routerLinkActive]="['active']">Add</a>
+    <a routerLink="/admin/edit" [routerLinkActive]="['active']">Edit</a>
+  </div>
+  <div class="column">
+    <img src="../../../assets/img/ProdStore. (1).png" alt="" />
+  </div>
+  <div class="column">
+    <div class="search"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <div class="logout">
+      <!-- <span>logout</span> -->
+      <a routerLink="/home" [tooltip]="'Logout'"
+        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+      ></a>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

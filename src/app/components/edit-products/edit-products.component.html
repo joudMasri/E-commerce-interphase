@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="product" *ngFor="let item of allProducts; let i = index">
+    <div class="card">
+      <div class="img">
+        <img [src]="item.thumbnail" alt="" />
+      </div>
+      <div class="column">
+        <div class="row">Title:</div>
+        <div class="row">
+          {{ item.title }}
+        </div>
+      </div>
+      <div class="column">
+        <div class="row">Description:</div>
+        <div class="row">
+          {{ item.description }}
+        </div>
+      </div>
+      <div class="column">
+        <div class="row">Price:</div>
+        <div class="row">$ {{ item.price }}</div>
+      </div>
+      <div class="column">
+        <div class="row"></div>
+        <div class="icons">
+          <i
+            class="fa-solid fa-pen-to-square"
+            (click)="editing(item, i)"
+            [tooltip]="'Edit'"
+          ></i>
+          <i
+            class="fa-solid fa-trash-can"
+            (click)="deleteItem(i)"
+            [tooltip]="'Delete'"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PopUp -->
+<div class="popupContainer" *ngIf="enablePopup">
+  <div class="cancel">
+    <button (click)="close()">x</button>
+  </div>
+  <div class="inputs-container">
+    <h3>Edit :</h3>
+    <form
+      [formGroup]="editProduct"
+      (ngSubmit)="updateProduct(item, item.id - 1)"
+    >
+      <div class="row">
+        <div class="column">
+          <input
+            type="text"
+            [(ngModel)]="title"
+            formControlName="title"
+            placeholder="Title *"
+          />
+          <input
+            type="text"
+            formControlName="description"
+            placeholder="Description *"
+            [(ngModel)]="description"
+          />
+          <input
+            type="number"
+            onkeypress="return event.charCode >= 48"
+            min="0"
+            formControlName="price"
+            placeholder="Price *"
+            [(ngModel)]="price"
+          />
+          <input
+            type="number"
+            formControlName="discount"
+            min="0"
+            max="99"
+            placeholder="Discount Percentage *"
+          />
+        </div>
+        <div class="column">
+          <input
+            type="number"
+            min="0"
+            formControlName="rating"
+            placeholder="Rating"
+          />
+          <input
+            type="number"
+            formControlName="stock"
+            min="0"
+            placeholder="Stock *"
+          />
+          <input type="text" formControlName="brand" placeholder="Brand *" />
+          <input
+            type="text"
+            formControlName="category"
+            placeholder="Category *"
+          />
+        </div>
+        <div class="column">
+          <input
+            type="text"
+            formControlName="thumbnail"
+            placeholder="thumbnail *"
+          />
+          <input type="text" formControlName="imgs" placeholder="First" />
+          <input type="text" formControlName="imgs" placeholder="Second" />
+          <input type="text" formControlName="imgs" placeholder="Third" />
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn-update" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>

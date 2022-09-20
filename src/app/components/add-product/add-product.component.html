@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Product details :</h2>
+  <form [formGroup]="addProduct" (ngSubmit)="add()">
+    <div class="row">
+      <div class="column">
+        <input
+          type="text"
+          formControlName="title"
+          [(ngModel)]="title"
+          placeholder="Title *"
+        />
+        <input
+          type="text"
+          formControlName="description"
+          placeholder="Description *"
+          [(ngModel)]="description"
+        />
+        <input
+          type="number"
+          onkeypress="return event.charCode >= 48"
+          min="0"
+          formControlName="price"
+          placeholder="Price *"
+          [(ngModel)]="price"
+        />
+        <input
+          type="number"
+          formControlName="discount"
+          min="0"
+          max="99"
+          placeholder="Discount Percentage *"
+          [(ngModel)]="discount"
+        />
+      </div>
+      <div class="column">
+        <input
+          type="number"
+          min="0"
+          formControlName="rating"
+          placeholder="Rating"
+          [(ngModel)]="rating"
+        />
+        <input
+          type="number"
+          formControlName="stock"
+          min="0"
+          placeholder="Stock *"
+          [(ngModel)]="stock"
+        />
+        <input type="text" formControlName="brand" placeholder="Brand *" />
+        <input
+          type="text"
+          formControlName="category"
+          placeholder="Category *"
+          [(ngModel)]="brand"
+        />
+      </div>
+      <div class="column">
+        <input
+          type="text"
+          formControlName="thumbnail"
+          placeholder="thumbnail *"
+          [(ngModel)]="thumbnail"
+        />
+        <input type="text" formControlName="imgs" placeholder="First" />
+        <input type="text" formControlName="imgs" placeholder="Second" />
+        <input type="text" formControlName="imgs" placeholder="Third" />
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn-add" type="submit">ADD</button>
+    </div>
+  </form>
+</div>

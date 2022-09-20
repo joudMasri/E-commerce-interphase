@@ -1,0 +1,126 @@
+<app-header></app-header>
+<header>
+  <h1>ALL PRODUCTS</h1>
+  <h6>HOME / PRODUCTS</h6>
+</header>
+
+<section class="container">
+  <div class="icons">
+    <div class="column">
+      <div class="icon">
+        <i class="fa-solid fa-filter"></i>
+        <details class="custom-select">
+          <summary class="radios">
+            <input type="radio" name="item" id="all" title="all" />
+            <input
+              type="radio"
+              name="item"
+              id="default"
+              title="Category"
+              checked
+            />
+            <input
+              type="radio"
+              name="item"
+              id="smartphones"
+              title="smartphones"
+            />
+            <input type="radio" name="item" id="laptops" title="laptops" />
+            <input
+              type="radio"
+              name="item"
+              id="fragrances"
+              title="fragrances"
+            />
+            <input type="radio" name="item" id="skincare" title="skincare" />
+            <input type="radio" name="item" id="groceries" title="groceries" />
+            <input
+              type="radio"
+              name="item"
+              id="home-decoration"
+              title="home-decoration"
+            />
+          </summary>
+          <ul class="list">
+            <li>
+              <label for="all" (click)="filter('')">all</label>
+            </li>
+            <li>
+              <label for="smartphones" (click)="filter('smartphones')">
+                smartphones
+                <span></span>
+              </label>
+            </li>
+            <li>
+              <label for="laptops" (click)="filter('laptops')">laptops</label>
+            </li>
+            <li>
+              <label for="fragrances" (click)="filter('fragrances')"
+                >fragrances</label
+              >
+            </li>
+            <li>
+              <label for="skincare" (click)="filter('skincare')"
+                >skincare</label
+              >
+            </li>
+            <li>
+              <label for="groceries" (click)="filter('groceries')"
+                >groceries</label
+              >
+            </li>
+            <li>
+              <label for="home-decoration" (click)="filter('home-decoration')"
+                >home-decoration</label
+              >
+            </li>
+          </ul>
+        </details>
+      </div>
+      <div class="icon">
+        <i
+          class="fa-solid fa-arrow-up-9-1"
+          (click)="sortDescending()"
+          [tooltip]="'Descending'"
+          *ngIf="!iconDisplay"
+        ></i>
+        <i
+          class="fa-solid fa-arrow-down-1-9"
+          (click)="sortAscending()"
+          [tooltip]="'Ascending'"
+          *ngIf="iconDisplay"
+        ></i>
+        Sort by
+      </div>
+    </div>
+
+    <div class="column">
+      <i
+        class="fa-solid fa-table-cells-large"
+        [tooltip]="'Grid View'"
+        style="color: #e73c17"
+      ></i>
+
+      <i class="fa-solid fa-list" [tooltip]="'List View'"></i>
+    </div>
+  </div>
+
+  <div class="all-items">
+    <app-item
+      *ngFor="
+        let item of filterCategory
+          | paginate
+            : { itemsPerPage: 8, currentPage: page, totalItems: totalLength }
+          | filter: searchKey:'title'
+      "
+      [itemObj]="item"
+    ></app-item>
+  </div>
+  <pagination-controls
+    *ngIf="paigination"
+    class="text-center my-pagination"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+</section>
+
+<app-footer></app-footer>

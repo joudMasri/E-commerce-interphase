@@ -1,0 +1,86 @@
+<app-header></app-header>
+<div class="container" *ngIf="itemObj">
+  <div class="colors">
+    <div
+      class="img-container"
+      *ngFor="let image of itemObj.images"
+      [ngClass]="{ active: focusedImage === image }"
+    >
+      <img src="{{ image }}" (click)="changeImg(image)" alt="" />
+    </div>
+  </div>
+  <div class="description-container">
+    <div class="img-view">
+      <img src="{{ srcImg }}" alt="" />
+    </div>
+    <div class="text-description">
+      <div class="column">
+        <p>Brand : {{ itemObj.brand }}</p>
+        <p>Category : {{ itemObj.category }}</p>
+        <p>Availiability : Available</p>
+        <h3>{{ itemObj.title }}</h3>
+        <div class="stars-container">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p>{{ itemObj.description }}</p>
+      </div>
+
+      <div class="column" *ngIf="!outOfStock">
+        <p style="font-size: 9px">USD(incl. of all taxes):</p>
+        <div class="price">
+          <h2>${{ total }}</h2>
+          <h2>
+            <del>${{ itemObj.price }}</del>
+          </h2>
+        </div>
+        <div class="btns">
+          <div class="item-number">
+            <button (click)="decrement()">-</button>
+            <span>{{ itemNumber }}</span>
+            <button (click)="increment()">+</button>
+          </div>
+          <button class="buy">Buy Now</button>
+          <button
+            class="add"
+            [disabled]="addToCartEnable"
+            (click)="addToCart()"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="column" *ngIf="outOfStock">
+        <p class="sold">Out Of Stock</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="description">
+  <h3>Description</h3>
+  <div class="underline"></div>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque ab
+    repudiandae beatae unde eum. Odio veritatis, praesentium similique
+    reiciendis laboriosam rem maiores. Nobis, dolor? Voluptatibus magnam ex
+    similique asperiores assumenda!
+  </p>
+  <p class="content" [ngClass]="{ more: more }">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
+    perspiciatis, possimus ea rerum velit maxime eius illo dolorum
+    <span *ngIf="more" style="margin-left: -5px; margin-right: 5px">...</span>
+    <button class="read-more" (click)="readMore()" [ngClass]="{ hide: !more }">
+      More...
+    </button>
+    modi at saepe rem cum nisi quia repellat asperiores voluptatem explicabo
+    impedit.
+    <button class="read-more" (click)="showLess()">Less..</button>
+  </p>
+</div>
+
+<app-footer></app-footer>

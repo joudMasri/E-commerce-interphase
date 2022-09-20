@@ -1,0 +1,29 @@
+<header>
+  <div class="logo display">
+    <img src="../../../assets/img/Logo.png" alt="" />
+  </div>
+  <div class="searchBar display">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (keyup)="search($event)"
+      placeholder="Search Products"
+    />
+    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+  </div>
+  <div class="icons">
+    <i class="fa-solid fa-magnifying-glass search"></i>
+    <a href="" class="display">Login</a>
+    <a href="" class="display">Signup</a>
+    <div class="cart">
+      <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+      <span class="badge">{{ badge }}</span>
+    </div>
+  </div>
+
+  <div class="menu">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+</header>
+
+<app-navbar></app-navbar>

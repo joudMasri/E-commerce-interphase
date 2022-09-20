@@ -1,0 +1,39 @@
+<div class="card-container">
+  <div class="card">
+    <div class="icons">
+      <div class="discount">-{{ itemObj.discountPercentage }}%</div>
+      <div class="favorite">
+        <i
+          class="fa-solid fa-heart"
+          (click)="changeHeartColor()"
+          [ngClass]="{ redHeart: redHeart }"
+          [tooltip]="'Favourite'"
+        ></i>
+      </div>
+      <div class="quick-view" [tooltip]="'Quick View'">
+        <i
+          class="fa-solid fa-maximize"
+          routerLink="/product/{{ itemObj.id }}"
+        ></i>
+      </div>
+    </div>
+    <div class="img">
+      <img src="{{ itemObj.thumbnail }}" alt="" />
+    </div>
+    <div class="btn" *ngIf="!OutOfStock">
+      <button (click)="addToCart()">Add to Cart</button>
+    </div>
+    <div class="sold" *ngIf="OutOfStock">
+      <p>Out Of Stock</p>
+    </div>
+  </div>
+  <div class="item-desc">
+    <p>{{ itemObj.title }}</p>
+    <div class="cost">
+      <p>${{ total }}</p>
+      <p>
+        <del>${{ itemObj.price }}</del>
+      </p>
+    </div>
+  </div>
+</div>
